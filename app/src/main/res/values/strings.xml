@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Recytechco</string>
+    <string name="lbl_sign_up">Not a member? Sign up now.</string>
+    <string name="lbl_password">Password</string>
+    <string name="lbl_username">Username</string>
+    <string name="lbl_full_name">Full Name</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_signup">Signup</string>
+    <string name="lbl_retype_password">Retype Password</string>
+    <string name="message_type_credentials">Type username and password, please.</string>
+    <string name="message_wrong_credentials">Username and password combination wrong.</string>
+    <string name="lbl_login_here">Already a member? Login Here.</string>
+    <string name="lbl_points">Points:</string>
+    <string name="lbl_element">Element</string>
+    <string name="lbl_number">Am.</string>
+    <string name="lbl_place">Place</string>
+    <string name="lbl_date">Date</string>
+    <string name="lbl_logout">Logout</string>
+</resources>
