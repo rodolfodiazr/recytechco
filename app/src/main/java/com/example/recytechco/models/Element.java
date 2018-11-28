@@ -5,6 +5,8 @@ public class Element {
     private int mId;
     private String mName;
     private int mPoints;
+    private String mAmountInString;
+    private int mAmount;
 
     public Element(int id, String name, int points) {
         mId = id;
@@ -34,5 +36,21 @@ public class Element {
 
     public void setPoints(int points) {
         mPoints = points;
+    }
+
+    public String getAmountInString() {
+        return mAmountInString;
+    }
+
+    public void setAmountInString(String amount) {
+        mAmountInString = amount;
+    }
+
+    public int getAmount() {
+        return mAmount;
+    }
+
+    public void setAmount(int amount) {
+        mAmount = amount;
     }
 }

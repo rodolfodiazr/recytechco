@@ -5,57 +5,72 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.recytechco.R;
-import com.example.recytechco.models.History;
+import com.example.recytechco.models.Element;
 
 import java.util.ArrayList;
 
 public class ElementsAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private ArrayList<History> mHistoryList;
+    private ArrayList<Element> mElements;
+    private RecycledElementListener mListener;
 
-    public ElementsAdapter(Context context, ArrayList<History> historyList) {
+    public interface RecycledElementListener {
+        void onRecycledElement(Element element);
+    }
+
+    public ElementsAdapter(Context context, ArrayList<Element> elements,
+                           RecycledElementListener listener) {
         mContext = context;
-        mHistoryList = historyList;
+        mElements = elements;
+        mListener = listener;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.history_list_item, parent, false);
+                .inflate(R.layout.element_list_item, parent, false);
         RecyclerView.ViewHolder viewHolder = new ElementViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ((ElementViewHolder) holder).mElementNameTextView
-                .setText(mHistoryList.get(position).getElementName());
-        ((ElementViewHolder) holder).mElementsNumberTextView
-                .setText(mHistoryList.get(position).getAmount() + "");
-        ((ElementViewHolder) holder).mDateTextView
-                .setText(mHistoryList.get(position).getDateInString());
+                .setText(mElements.get(position).getName());
+        ((ElementViewHolder) holder).mPointsTextView
+                .setText(mElements.get(position).getPoints());
+        final String amountInString = ((ElementViewHolder) holder).mAmountEditText.getText().toString();
+        ((ElementViewHolder) holder).mRecycleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mElements.get(position).setAmountInString(amountInString);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mHistoryList.size();
+        return mElements.size();
     }
 
     private class ElementViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView mElementNameTextView, mElementsNumberTextView, mPlaceTextView,
-                mDateTextView;
+        private final TextView mElementNameTextView, mPointsTextView;
+        private final EditText mAmountEditText;
+        private final Button mRecycleButton;
 
         public ElementViewHolder(View view) {
             super(view);
             mElementNameTextView = view.findViewById(R.id.elementNameTextView);
-            mElementsNumberTextView = view.findViewById(R.id.elementsNumberTextView);
-            mPlaceTextView = view.findViewById(R.id.placeTextView);
-            mDateTextView = view.findViewById(R.id.dateTextView);
+            mPointsTextView = view.findViewById(R.id.pointsTextView);
+            mAmountEditText = view.findViewById(R.id.amountEditText);
+            mRecycleButton = view.findViewById(R.id.recycleButton);
         }
     }
 }

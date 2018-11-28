@@ -7,6 +7,17 @@ public class History {
     private int mAmount;
     private String mPlace;
     private String mDateInString;
+    private int mUserId;
+
+    public History(int elementId, String elementName, int amount, String place, String dateInString,
+                   int userId) {
+        mElementId = elementId;
+        mElementName = elementName;
+        mAmount = amount;
+        mPlace = place;
+        mDateInString = dateInString;
+        mUserId = userId;
+    }
 
     public History(int elementId, String elementName, int amount, String place, String dateInString) {
         mElementId = elementId;
@@ -15,6 +26,7 @@ public class History {
         mPlace = place;
         mDateInString = dateInString;
     }
+
 
     public int getElementId() {
         return mElementId;
@@ -48,11 +60,18 @@ public class History {
         mPlace = place;
     }
 
+    public int getUserId() {
+        return mUserId;
+    }
+
     public String getDateInString() {
         return mDateInString;
+
     }
 
     public void setDateInString(String dateInString) {
         mDateInString = dateInString;
     }
+
+
 }

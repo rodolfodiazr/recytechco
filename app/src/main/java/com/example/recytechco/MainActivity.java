@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mFullNameTextView, mPointsTextView;
-    private Button mLogoutButton;
+    private Button mRecycleButton, mLogoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
         mFullNameTextView = findViewById(R.id.fullNameTextView);
         mFullNameTextView.setText(Config.getFullName(this));
+
+        mRecycleButton = findViewById(R.id.recycleButton);
+        mRecycleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(MainActivity.this, ElementsActivity.class));
+            }
+        });
 
         mLogoutButton = findViewById(R.id.logoutButton);
         mLogoutButton.setOnClickListener(new View.OnClickListener() {

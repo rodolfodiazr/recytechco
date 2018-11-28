@@ -139,4 +139,23 @@ public class DatabaseQuery {
             mSqLiteDatabase.close();
         }
     }
+
+    public void add(History history, DatabaseQueryListener listener) {
+        mSqLiteDatabase = mDatabaseHelper.getReadableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Config.COLUMN_ELEMENT_ID, history.getElementId());
+        contentValues.put(Config.COLUMN_ELEMENT_NAME, history.getElementName());
+        contentValues.put(Config.COLUMN_AMOUNT, history.getAmount());
+        contentValues.put(Config.COLUMN_HISTORY_DATE, history.getDateInString());
+        contentValues.put(Config.COLUMN_USER_ID, history.getUserId());
+        try {
+            mSqLiteDatabase.insertOrThrow(Config.TABLE_HISTORY, null, contentValues);
+            listener.onSuccess();
+        } catch (SQLiteException e) {
+            Log.d("DatabaseQuery", e.getMessage());
+        } finally {
+            mSqLiteDatabase.close();
+        }
+    }
 }

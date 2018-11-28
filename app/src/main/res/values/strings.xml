@@ -10,10 +10,13 @@
     <string name="message_type_credentials">Type username and password, please.</string>
     <string name="message_wrong_credentials">Username and password combination wrong.</string>
     <string name="lbl_login_here">Already a member? Login Here.</string>
-    <string name="lbl_points">Points:</string>
+    <string name="lbl_points">Points</string>
     <string name="lbl_element">Element</string>
     <string name="lbl_number">Am.</string>
     <string name="lbl_place">Place</string>
     <string name="lbl_date">Date</string>
     <string name="lbl_logout">Logout</string>
+    <string name="lbl_note">Enter the amount of items that you will recycle.</string>
+    <string name="lbl_amount">Amount</string>
+    <string name="action_recycle">Recycle</string>
 </resources>
