@@ -1,7 +1,12 @@
 package com.example.recytechco;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.recytechco.adapters.ElementsAdapter;
@@ -12,7 +17,9 @@ import com.example.recytechco.util.DatabaseQuery;
 
 public class ElementsActivity extends AppCompatActivity {
 
+    private RecyclerView mElementsRecyclerView;
     private ElementsAdapter mElementsAdapter;
+    private Button mGoButton;
 
     private DatabaseQuery mDatabaseQuery;
 
@@ -21,8 +28,7 @@ public class ElementsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elements);
 
-        mDatabaseQuery = new DatabaseQuery(this);
-
+        mElementsRecyclerView = findViewById(R.id.elementsRecyclerView);
         mElementsAdapter = new ElementsAdapter(this, Config.getElements(), new ElementsAdapter.RecycledElementListener() {
             @Override
             public void onRecycledElement(Element element) {
@@ -32,6 +38,21 @@ public class ElementsActivity extends AppCompatActivity {
                 addElementToHistory(element);
             }
         });
+        mElementsRecyclerView.setAdapter(mElementsAdapter);
+        mElementsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mElementsRecyclerView.setHasFixedSize(true);
+
+        mGoButton = findViewById(R.id.goButton);
+        mGoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(ElementsActivity.this, MainActivity.class));
+            }
+        });
+
+        mDatabaseQuery = new DatabaseQuery(this);
+
     }
 
     private void addElementToHistory(Element element) {
@@ -43,6 +64,12 @@ public class ElementsActivity extends AppCompatActivity {
                     public void onSuccess() {
                         Toast.makeText(ElementsActivity.this, "Success!!",
                                 Toast.LENGTH_LONG).show();
+                        mElementsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onSuccess(int id) {
+
                     }
                 });
     }

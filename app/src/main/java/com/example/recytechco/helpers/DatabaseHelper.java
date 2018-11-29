@@ -47,8 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + Config.COLUMN_ELEMENT_ID + " INTEGER NOT NULL, "
                 + Config.COLUMN_USER_ID + " INTEGER NOT NULL, "
                 + Config.COLUMN_ELEMENT_NAME + " TEXT NOT NULL, "
-                + Config.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
-                " FOREIGN KEY (" + Config.COLUMN_USER_ID + ") REFERENCES " + Config.TABLE_USER + "(" + Config.COLUMN_USER_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + Config.COLUMN_AMOUNT + " INTEGER NOT NULL, "
+                + Config.COLUMN_HISTORY_DATE + " TEXT NOT NULL, "
+                + " FOREIGN KEY (" + Config.COLUMN_USER_ID + ") REFERENCES " + Config.TABLE_USER + "(" + Config.COLUMN_USER_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
                 + ")";
 
         db.execSQL(CREATE_USER_TABLE);
@@ -61,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + Config.TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + Config.TABLE_HISTORY);
 
         // Create tables
         onCreate(db);

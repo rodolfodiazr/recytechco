@@ -24,6 +24,8 @@ public class DatabaseQuery {
 
     public interface DatabaseQueryListener {
         void onSuccess();
+
+        void onSuccess(int id);
     }
 
     public DatabaseQuery(Context context) {
@@ -69,10 +71,11 @@ public class DatabaseQuery {
                     new String[]{username, password}, null, null, null);
 
             if (cursor != null && cursor.moveToFirst()) {
+                int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_USER_ID));
                 String fullName = cursor.getString(cursor.getColumnIndex(Config.COLUMN_FULL_NAME));
                 int points = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_POINTS));
 
-                user = new User(username, fullName, password, points);
+                user = new User(id, username, fullName, password, points);
             }
         } catch (SQLiteException e) {
             Log.d(tag, e.getMessage());
@@ -93,8 +96,10 @@ public class DatabaseQuery {
         Cursor cursor = null;
         try {
 
-            cursor = mSqLiteDatabase.query(Config.TABLE_HISTORY, null, null,
-                    null, null, null, null, null);
+            cursor = mSqLiteDatabase.query(Config.TABLE_HISTORY, null,
+                    Config.COLUMN_USER_ID + " = ? ",
+                    new String[]{"" + Config.getUserId(mContext)}, null, null,
+                    null, null);
 
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
@@ -131,8 +136,8 @@ public class DatabaseQuery {
         contentValues.put(Config.COLUMN_FULL_NAME, user.getFullName());
         contentValues.put(Config.COLUMN_PASSWORD, user.getPassword());
         try {
-            mSqLiteDatabase.insertOrThrow(Config.TABLE_USER, null, contentValues);
-            listener.onSuccess();
+            long id = mSqLiteDatabase.insertOrThrow(Config.TABLE_USER, null, contentValues);
+            listener.onSuccess((int) id);
         } catch (SQLiteException e) {
             Log.d("DatabaseQuery", e.getMessage());
         } finally {

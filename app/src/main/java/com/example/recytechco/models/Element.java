@@ -14,6 +14,13 @@ public class Element {
         mPoints = points;
     }
 
+    public Element(int id, String name, int points, String amountInString) {
+        mId = id;
+        mName = name;
+        mPoints = points;
+        mAmountInString = amountInString;
+    }
+
     public int getId() {
         return mId;
     }

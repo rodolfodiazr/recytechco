@@ -19,4 +19,5 @@
     <string name="lbl_note">Enter the amount of items that you will recycle.</string>
     <string name="lbl_amount">Amount</string>
     <string name="action_recycle">Recycle</string>
+    <string name="lbl_my_recycled_elements">My recycled elements</string>
 </resources>

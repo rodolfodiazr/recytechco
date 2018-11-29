@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recytechco.models.User;
+import com.example.recytechco.util.Config;
 import com.example.recytechco.util.DatabaseQuery;
 
 public class SignupActivity extends AppCompatActivity {
@@ -51,12 +52,18 @@ public class SignupActivity extends AppCompatActivity {
 
     private void signUp() {
         if (validateFields()) {
-            User user = new User(mUsernameEditText.getText().toString(),
+            final User user = new User(mUsernameEditText.getText().toString(),
                     mFullNameEditText.getText().toString(), mPasswordEditText.getText().toString(),
                     0);
             mDatabaseQuery.add(user, new DatabaseQuery.DatabaseQueryListener() {
                 @Override
                 public void onSuccess() {
+                }
+
+                @Override
+                public void onSuccess(int id) {
+                    Config.setUserId(SignupActivity.this, id);
+                    Config.setFullName(SignupActivity.this, user.getFullName());
                     finish();
                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                 }

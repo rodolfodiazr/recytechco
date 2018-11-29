@@ -44,12 +44,14 @@ public class ElementsAdapter extends RecyclerView.Adapter {
         ((ElementViewHolder) holder).mElementNameTextView
                 .setText(mElements.get(position).getName());
         ((ElementViewHolder) holder).mPointsTextView
-                .setText(mElements.get(position).getPoints());
-        final String amountInString = ((ElementViewHolder) holder).mAmountEditText.getText().toString();
+                .setText("" + mElements.get(position).getPoints());
+        ((ElementViewHolder) holder).mAmountEditText.setText("");
         ((ElementViewHolder) holder).mRecycleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String amountInString = ((ElementViewHolder) holder).mAmountEditText.getText().toString();
                 mElements.get(position).setAmountInString(amountInString);
+                mListener.onRecycledElement(mElements.get(position));
             }
         });
     }

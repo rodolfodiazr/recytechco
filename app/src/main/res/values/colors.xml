@@ -7,4 +7,5 @@
     <color name="white">#FFFFFF</color>
     <color name="green">#1E9E1E</color>
     <color name="light_green">#3CBC3C</color>
+    <color name="gainsboro">#DCDCDC</color>
 </resources>

@@ -8,6 +8,14 @@ public class User {
     private String mPassword;
     private int mPoints;
 
+    public User(int id, String username, String fullName, String password, int points) {
+        mId = id;
+        mUsername = username;
+        mFullName = fullName;
+        mPassword = password;
+        mPoints = points;
+    }
+
     public User(String username, String fullName, String password, int points) {
         mUsername = username;
         mFullName = fullName;

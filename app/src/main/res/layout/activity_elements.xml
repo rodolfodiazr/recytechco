@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
+    android:background="@color/gainsboro"
+    android:padding="16dp"
     tools:context=".ElementsActivity">
 
     <TextView
@@ -58,6 +59,16 @@
         android:id="@+id/elementsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/goButton"
         android:layout_below="@id/headerLinearLayout"></android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/goButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_green"
+        android:text="@string/lbl_my_recycled_elements"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

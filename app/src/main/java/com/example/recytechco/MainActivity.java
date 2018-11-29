@@ -3,10 +3,13 @@ package com.example.recytechco;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.recytechco.adapters.HistoryAdapter;
 import com.example.recytechco.models.Element;
 import com.example.recytechco.models.History;
 import com.example.recytechco.util.Config;
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mFullNameTextView, mPointsTextView;
     private Button mRecycleButton, mLogoutButton;
+    private RecyclerView mHistoryRecyclerView;
+
+    private HistoryAdapter mHistoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
+
+        mHistoryAdapter = new HistoryAdapter(new DatabaseQuery(this).getHistories());
+        mHistoryRecyclerView = findViewById(R.id.historyRecyclerView);
+        mHistoryRecyclerView.setAdapter(mHistoryAdapter);
+        mHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mHistoryRecyclerView.setHasFixedSize(true);
+
     }
 
     private int getPoints() {
