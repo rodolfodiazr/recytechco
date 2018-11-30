@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pointsTextView"
         android:orientation="horizontal"
+        android:padding="8dp"
         android:weightSum="10">
 
         <TextView
@@ -80,8 +81,8 @@
         android:id="@+id/historyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLinearLayout"
         android:layout_above="@+id/actionsLinearLayout"
+        android:layout_below="@+id/headerLinearLayout"
         android:layout_marginBottom="16dp">
 
     </android.support.v7.widget.RecyclerView>

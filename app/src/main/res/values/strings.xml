@@ -20,4 +20,9 @@
     <string name="lbl_amount">Amount</string>
     <string name="action_recycle">Recycle</string>
     <string name="lbl_my_recycled_elements">My recycled elements</string>
+    <string name="message_invalid_credentials">Only numbers and letters are allowed for the username and password.</string>
+    <string name="message_type_all_fields">Type all fields.</string>
+    <string name="message_user_already_registered">User was already registered.</string>
+    <string name="message_passwords_dont_match">The passwords don\'t match.</string>
+    <string name="message_success">Success!!</string>
 </resources>

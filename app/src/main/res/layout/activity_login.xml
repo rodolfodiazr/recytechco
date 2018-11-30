@@ -22,14 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/input_bottom_border"
-        android:cursorVisible="true"
         android:hint="@string/lbl_username"
         android:inputType="text"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@color/white" />
+        android:textCursorDrawable="@null" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -37,13 +35,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@drawable/input_bottom_border"
-        android:cursorVisible="true"
         android:hint="@string/lbl_password"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@color/white" />
+        android:textCursorDrawable="@null" />
 
     <TextView
         android:id="@+id/errorMessageTextView"

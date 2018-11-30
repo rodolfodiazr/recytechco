@@ -62,7 +62,7 @@ public class ElementsActivity extends AppCompatActivity {
                 new DatabaseQuery.DatabaseQueryListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(ElementsActivity.this, "Success!!",
+                        Toast.makeText(ElementsActivity.this, R.string.message_success,
                                 Toast.LENGTH_LONG).show();
                         mElementsAdapter.notifyDataSetChanged();
                     }
