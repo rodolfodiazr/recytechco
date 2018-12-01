@@ -3,6 +3,8 @@ package com.example.recytechco;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,9 @@ public class SignupActivity extends AppCompatActivity {
         mPasswordEditText2 = findViewById(R.id.passwordEditText2);
 
         mLoginTextView = findViewById(R.id.loginTextView);
+        SpannableString spannableString = new SpannableString(getString(R.string.lbl_login_here));
+        spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
+        mLoginTextView.setText(spannableString);
         mLoginTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

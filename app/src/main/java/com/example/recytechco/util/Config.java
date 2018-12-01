@@ -38,8 +38,13 @@ public class Config {
 
     public static ArrayList<Element> getElements() {
         ArrayList<Element> elements = new ArrayList<>();
-        elements.add(new Element(1, "Mother board", 10));
-        elements.add(new Element(2, "Keyboard", 5));
+        elements.add(new Element(1, "Mouse", 1));
+        elements.add(new Element(2, "Keyboard", 2));
+        elements.add(new Element(3, "Speakers", 4));
+        elements.add(new Element(4, "Mother board", 5));
+        elements.add(new Element(5, "Printer", 8));
+        elements.add(new Element(6, "Monitor", 10));
+
         return elements;
     }
 

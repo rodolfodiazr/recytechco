@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle(R.string.lbl_history);
+
         mPointsTextView = findViewById(R.id.pointsValueTextView);
         mPointsTextView.setText(getPoints() + "");
 
@@ -82,5 +84,8 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
+    @Override
+    public void onBackPressed() {
 
+    }
 }

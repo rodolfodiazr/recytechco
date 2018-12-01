@@ -63,6 +63,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:shadowColor="@color/white"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
         android:text="@string/lbl_sign_up"
         android:textColor="@color/white"
         android:textStyle="italic" />

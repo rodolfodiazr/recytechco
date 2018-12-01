@@ -21,7 +21,7 @@ public class ElementsAdapter extends RecyclerView.Adapter {
     private RecycledElementListener mListener;
 
     public interface RecycledElementListener {
-        void onRecycledElement(Element element);
+        void onRecycledElement(int position, Element element);
     }
 
     public ElementsAdapter(Context context, ArrayList<Element> elements,
@@ -51,7 +51,7 @@ public class ElementsAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 String amountInString = ((ElementViewHolder) holder).mAmountEditText.getText().toString();
                 mElements.get(position).setAmountInString(amountInString);
-                mListener.onRecycledElement(mElements.get(position));
+                mListener.onRecycledElement(position, mElements.get(position));
             }
         });
     }

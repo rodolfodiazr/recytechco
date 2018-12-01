@@ -81,6 +81,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="5dp"
+        android:shadowColor="@color/white"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
         android:text="@string/lbl_login_here"
         android:textColor="@color/white"
         android:textStyle="italic" />

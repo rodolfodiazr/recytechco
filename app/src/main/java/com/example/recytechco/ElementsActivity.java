@@ -1,6 +1,7 @@
 package com.example.recytechco;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +20,7 @@ public class ElementsActivity extends AppCompatActivity {
 
     private RecyclerView mElementsRecyclerView;
     private ElementsAdapter mElementsAdapter;
-    private Button mGoButton;
+    private Button mGoButton, mMapButton;
 
     private DatabaseQuery mDatabaseQuery;
 
@@ -28,14 +29,16 @@ public class ElementsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elements);
 
+        getSupportActionBar().setTitle(R.string.lbl_elements);
+
         mElementsRecyclerView = findViewById(R.id.elementsRecyclerView);
         mElementsAdapter = new ElementsAdapter(this, Config.getElements(), new ElementsAdapter.RecycledElementListener() {
             @Override
-            public void onRecycledElement(Element element) {
+            public void onRecycledElement(int position, Element element) {
                 if (element.getAmountInString().trim().equals("")) {
                     return;
                 }
-                addElementToHistory(element);
+                addElementToHistory(position, element);
             }
         });
         mElementsRecyclerView.setAdapter(mElementsAdapter);
@@ -50,12 +53,22 @@ public class ElementsActivity extends AppCompatActivity {
                 startActivity(new Intent(ElementsActivity.this, MainActivity.class));
             }
         });
+        mMapButton = findViewById(R.id.mapButton);
+        mMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:10.995038,-74.822686");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
 
         mDatabaseQuery = new DatabaseQuery(this);
 
     }
 
-    private void addElementToHistory(Element element) {
+    private void addElementToHistory(final int pos, Element element) {
         mDatabaseQuery.add(new History(element.getId(), element.getName(),
                         Integer.parseInt(element.getAmountInString()), "",
                         Config.getCurrentDateInString(), Config.getUserId(this)),
@@ -63,8 +76,8 @@ public class ElementsActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess() {
                         Toast.makeText(ElementsActivity.this, R.string.message_success,
-                                Toast.LENGTH_LONG).show();
-                        mElementsAdapter.notifyDataSetChanged();
+                                Toast.LENGTH_SHORT).show();
+                        mElementsAdapter.notifyItemChanged(pos);
                     }
 
                     @Override
@@ -72,5 +85,11 @@ public class ElementsActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(ElementsActivity.this, MainActivity.class));
     }
 }
